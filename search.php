@@ -51,9 +51,24 @@
                                 <?php 
                                 while($ar=mysqli_fetch_array($var)){
                                     $title=$ar['TITLE'];
-                                    $src="./UPLOADS/".$title.".mp4";?>
-                                    <?php echo "<li><video class='responsive' style='width:10% height:10%' src='$src'> <p>$title</p></li>";?>
-                                <?php } 
+                                    if($ar['format']=="video"){
+                                        $n=$ar['number'];
+                                        for($i=1; $i<=$n; $i++){
+                                            $src="./UPLOADS/".$title.$i.".mp4";?>
+                                        <?php echo "<li><video class='responsive' style='width:10% height:10%' src='$src'> <p>$title</p></li>";?>
+                                <?php 
+                                        }
+                                    }
+                                    else{
+                                        if($ar['format']=="pdf"){
+                                            $n=$ar['number'];
+                                            for($i=1; $i<=$n; $i++){
+                                                $src="./UPLOADS/".$title.$i.".pdf";
+                                                echo "<li><img src='./images/logo-adobe-pdf.jpg'/> $title</li>"
+                                            }
+                                        }
+                                    }
+                                }
                 }
                 else { echo "<p>Sorry Content Couldn't be found</p>";
                 }?>
