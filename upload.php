@@ -26,15 +26,20 @@
                         <option value="subject4">Subject4</option>
                         <option value="subject5">Subject5</option>
                     </select>
-                    <input type="text" name="title" id="title" placeholder="Enter the title"/>
                     <select name="format" id="format" onchange="choose_upload();">
                         <option value="0" selected="1">Choose</option>
                         <option value="PDF">PDF</option>
                         <option value="video">Video</option>
-                        <option value="webpage">Webpage</option>
+                        <option value="website">Webpage</option>
+                        <option value="htmlfile">HTMLFILE</option>
                     </select>
+                    <div id="uploads" name="uploads">
+                    </div>
                     <div id="upload" name="upload">
-                        
+                    </div>
+                    <img id="thumb" name="thumb"/>
+                        <textarea id="canurl" name="canurl"></textarea>
+                    <div id="but" name="but">
                     </div>
                 </form>
             </div>
@@ -43,13 +48,14 @@
     </div>
     <div class="col-md-1 col-sm-1 col-lg-1"></div>
     </div>
+    <script type="text/javascript" src="./js/thumbnail.js"></script>
 </body>
 <?php
     if(!empty($_POST)){
-        $title=$_POST['title'];
         $subject=$_POST['subject'];
         $format=$_POST['format'];
-        if($format=="webpage"){
+        if($format=="website"){
+            $title=$_POST['title'];
             $link=$_POST['link'];
         }
         else{
