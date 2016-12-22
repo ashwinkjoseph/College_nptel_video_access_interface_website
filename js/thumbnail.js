@@ -4,9 +4,9 @@ function thumbnail(){
         var filee = event.target.files;
         var i=0;
         alert('im outside while'+"i:"+i);
+        var cont = document.getElementById('uploads').innerHTML;
         while(filee[i]){
             alert('i:'+i);
-            var cont = document.getElementById('uploads');
             var file = filee[i];
             var fileReader = new FileReader();
             if (file.type.match('image')) {
