@@ -12,14 +12,15 @@
                 document.forms[n-1].submit();
             }
         </script>
+        <script type="text/javascript" src="./js/expand_function.js"></script>
+        <script type="text/javascript" src="./js/PDFObject-master/pdfobject.js"></script>
     </head>
     <body>
         <?php 
-            echo "<script>alert('im here');</script>"; 
             if(!empty($_POST)){
                 $conn=mysqli_connect("localhost","root","","nptel");
                 $value=$_POST['search'];
-                $var=mysqli_query($conn, "SELECT * FROM TABLE WHERE TITLE LIKE $value");
+                $var=mysqli_query($conn, "SELECT * FROM files WHERE (Topic LIKE '%$value%')");
                 if($var){
         ?>
         <div class="container-fluid">
@@ -45,26 +46,40 @@
                             </div>
                         </div>
                     </nav>
+                    <div class ="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="content"></div> 
+                    </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-lg-12">
-                            <ul>
-                                <?php 
+                            <?php 
                                 while($ar=mysqli_fetch_array($var)){
-                                    $title=$ar['TITLE'];
-                                    if($ar['format']=="video"){
-                                        $n=$ar['number'];
-                                        for($i=1; $i<=$n; $i++){
-                                            $src="./UPLOADS/".$title.$i.".mp4";?>
-                                        <?php echo "<li><video class='responsive' style='width:10% height:10%' src='$src'> <p>$title</p></li>";?>
-                                <?php 
-                                        }
+                                    $title=$ar['Topic'];    
+                                    $src="./uploads/FILES/".$title;
+                                    if($ar['Format']=="video/mp4"){
+                                        $f = "'".$title."'";
+                                        echo '<div><a href="#" onclick="expand('.$f.', 0);"><video style="width:5%; height:5%" src="'.$src.'"></video>'.$title.'</a></div>';
                                     }
                                     else{
-                                        if($ar['format']=="pdf"){
-                                            $n=$ar['number'];
-                                            for($i=1; $i<=$n; $i++){
-                                                $src="./UPLOADS/".$title.$i.".pdf";
-                                                echo "<li><img src='./images/logo-adobe-pdf.jpg'/> $title</li>"
+                                        if($ar['Format']=="application/pdf"){
+                                            $f = "'".$title."'";
+                                            echo '<div><a href="#" onclick="expand('.$f.', 1);"><img src="./images/logo-adobe-pdf.jpg"/>'.$title.'</a></div>';
+                                        }
+                                        else{
+                                            if($ar['Format']=="html"){
+                                                $f = "'".$title."'";
+                                                echo '<div><a href="#" onclick="expand('.$f.', 2);"><img src="./images/HTML5_logo_and_wordmark.svg"/>'.$title.'</a></div>';
+                                            }
+                                            else{
+                                                if($ar['Format']=="application/vnd.ms-powerpoint"){
+                                                    $f = "'".$title."'";
+                                                    echo '<div><a href="#" onclick="expand('.$f.', 3);"><img src="./images/Microsoft_PowerPoint_2013_logo.svg.png"/>'.$title.'</a></div>';
+                                                }
+                                                else{
+                                                    if($ar['Format']=="website"){
+                                                        $f = "'".$title."'";
+                                                        echo '<div><a href="#" onclick="expand('.$f.', 4);"><img src="./images/HTML5_logo_and_wordmark.svg"/>'.$title.'</a></div>';
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -72,7 +87,6 @@
                 }
                 else { echo "<p>Sorry Content Couldn't be found</p>";
                 }?>
-                            </ul>
                         </div>
                     </div>
                 </div>
