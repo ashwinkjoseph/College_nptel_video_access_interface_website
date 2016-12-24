@@ -6,18 +6,14 @@ function  choose_upload(){
     else{
         var cont;
         if(format=="website"){
-            cont="<input type='text' name='title' id='title'/>";
-            cont=cont+"<br>"+"<input type='text' name='link' id='link'/>";
+            cont="<input type='text' name='title' id='title' placeholder='Enter the topic'/>";
+            cont=cont+"<br>"+"<input type='text' name='link' id='link' placeholder='Enter the link'/>";
         }
         else{
-            cont="<input type='file' name='files' id='files' multiple/>";
+            cont="<input type='file' name='files[]' id='files[]' multiple/>";
             document.getElementById('upload').innerHTML=cont;
-            alert('format :'+format);
-            if(format=="video"){
-                thumbnail();
-            }
         }
-        cont="<input type='button' name='Upload' id='Upload' onclick='check();'/>";
+        cont="<input type='button' name='Upload' id='Upload' value='submit' onclick='check();'/>";
         document.getElementById('but').innerHTML=cont;
     }
 }

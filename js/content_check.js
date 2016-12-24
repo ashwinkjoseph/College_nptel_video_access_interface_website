@@ -4,10 +4,6 @@ function check(){
         alert('You cannot leave the subject Empty');
         flag=0;
     }
-    if(!document.getElementById('title').value){
-        alert('You cannot leave the title Empty');
-        flag=0;
-    }
     if(document.getElementById('format').value=="0"){
         alert('You cannot leave the format Empty');
         flag=0;

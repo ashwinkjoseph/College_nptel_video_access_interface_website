@@ -1,11 +1,13 @@
 function thumbnail(){
+    alert('im called');
     document.getElementById('files[]').addEventListener('change', function(event) {
-        var fileee = event.target.files;
+        var filee = event.target.files;
         var i=0;
-        alert('im in addevent');
+        alert('im outside while'+"i:"+i);
         var cont = document.getElementById('uploads').innerHTML;
-        var myloop = function(file, i){
-            alert('im inside the loop');
+        while(filee[i]){
+            alert('i:'+i);
+            var file = filee[i];
             var fileReader = new FileReader();
             if (file.type.match('image')) {
                 fileReader.onload = function() {
@@ -26,11 +28,6 @@ function thumbnail(){
                             video.pause();
                         }
                     };
-                    video.addEventListener('loadeddata', function() {
-                        if (snapImage()) {
-                            video.removeEventListener('timeupdate', timeupdate);
-                        }
-                    });
                     var snapImage = function() {
                         var canvas = document.createElement('canvas');
                         canvas.width = 200;
@@ -40,7 +37,6 @@ function thumbnail(){
                         var urlcan = document.getElementById('canurl');
                         urlcan.value=canvas.toDataURL();
                         var success = image.length > 100000;
-                        var name = file.name;
                         if (success) {
                             var img = document.getElementById('thumb');
                             //var imgs = document.createElement('thumbs');
@@ -54,17 +50,16 @@ function thumbnail(){
                             //document.getElementById('uploads').appendChild(imgs);
                             //document.getElementById('uploads').appendChild(urlcans);
                             cont = cont + "<br>";
-                            cont = cont + "<img src='" + image + "' name='" + name + "' id='" + name + "'/>";
+                            cont = cont + "<img src='" + image + "' name='thumb" + i + "' id='thumb" + i + "'/>";
                             cont = cont + "<br>";
-                            cont = cont + "<textarea id='" + name +"' name='" + name + "'>"+ image +"</textarea>";
+                            cont = cont + "<textarea id='canurl" + i +"' name='canurl" + "'>"+ image +"</textarea>";
                             document.getElementById('uploads').innerHTML=cont;
                             URL.revokeObjectURL(url);
                         }
                         return success;
                     };
                     var timeee= function(){
-                        if(video.currentTime>=0){
-                            video.pause();
+                        if(video.currentTime>=5){
                             video.removeEventListener('timeupdate',timeee);
                             video.addEventListener('timeupdate',timeupdate);
                         }
@@ -79,7 +74,7 @@ function thumbnail(){
                 };
                 fileReader.readAsArrayBuffer(file);
             }
+            i=i+1;
         }
-        Array.from(fileee).forEach(myloop);
     });
 }

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+        $conn = mysqli_connect("localhost", "root", "", "nptel");
+    ?>
     <meta charser="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -48,18 +51,96 @@
     </div>
     <div class="col-md-1 col-sm-1 col-lg-1"></div>
     </div>
-    <script type="text/javascript" src="./js/thumbnail.js"></script>
 </body>
 <?php
     if(!empty($_POST)){
+        $flag = 1;
         $subject=$_POST['subject'];
         $format=$_POST['format'];
         if($format=="website"){
             $title=$_POST['title'];
             $link=$_POST['link'];
+            $query = "INSERT INTO website VALUES(id, '$subject', '$title', '$link')";
+            if(mysqli_query($conn, $query)){
+                echo "<script>alert('Success');</sctipt>";
+            }
         }
         else{
-            
+            if($format=="video"){
+                $n = count($_FILES['files']['name']);
+                $uploaddir = "./uploads/video/";
+                for($i=0; $i<$n; $i++){
+                    if($_FILES['files']['size'][$i]==0){
+                        $flag = 0;
+                        die("ERROR: Zero Byte File Upload");
+                    }
+                    $allowedFileTypes = array("video/mp4");
+                    if(!in_array($_FILES['files']['type'][$i], $allowedFileTypes)){
+                        $flag = 0;
+                        die("ERROR: File Type Not Allowed");
+                    }
+                    if(!is_uploaded_file($_FILES['files']['tmp_name'][$i])){
+                        $flag = 0;
+                        die("ERROR: Invalid File Upload");
+                    }
+                    $name = $_FILES['files']['name'][$i];
+                    if(strpos($name, ".mp4") == false){
+                        $name = $name.".mp4";
+                    }
+                    move_uploaded_file($_FILES['files']['tmp_name'][$i], $uploaddir.$name);
+                    $query = "INSERT INTO videos VALUES(id, '$subject', '$name')";
+                    if(mysqli_query($conn, $query)){
+                        echo "<script>alert('Success')</script>";
+                    }
+                }
+            }
+            else{
+                if($format=="pdf"){
+                    $n = count($_FILES['files']['name']);
+                    $uploaddir = "./uploads/";
+                    for($i=0; $i<$n; $i++){
+                        if($_FILES['files']['size'][$i]==0){
+                            $flag = 0;
+                            die("ERROR: Zero Byte File Upload");
+                        }
+                        if(!is_uploaded_file($_FILES['files']['tmp_name'][$i])){
+                            $flag = 0;
+                            die("ERROR: Invalid File Upload");
+                        }
+                        $name = $_FILES['files']['name'][$i];
+                        move_uploaded_file($_FILES['files']['tmp_name'][$i], $uploaddir.$name);
+                        $query = "INSERT INTO pdf VALUES(id, '$subject', '$name')";
+                        if(mysqli_query($conn, $query)){
+                            echo "<script>alert('Success')</script>";
+                        }
+                    }
+                }
+                else{
+                    if($format=="htmlfile"){
+                        $n = count($_FILES['files']['name']);
+                        $uploaddir = "./uploads/";
+                        for($i=0; $i<$n; $i++){
+                            if($_FILES['files']['size'][$i]==0){
+                                $flag = 0;
+                                die("ERROR: Zero Byte File Upload");
+                            }
+                            if(!is_uploaded_file($_FILES['files']['tmp_name'][$i])){
+                                $flag = 0;
+                                die("ERROR: Invalid File Upload");
+                            }
+                            $name = $_FILES['files']['name'][$i];
+                            move_uploaded_file($_FILES['files']['tmp_name'][$i], $uploaddir.$name);
+                            $query = "INSERT INTO htmlf VALUES(id, '$subject', '$name')";
+                            if(mysqli_query($conn, $query)){
+                                echo "<script>alert('Success')</script>";
+                            }
+                        }
+                    }
+                    else{
+                        echo "<script>alert('wrong format!!!')</script>";
+                    }
+                }
+            }
         }
     }
 ?>
