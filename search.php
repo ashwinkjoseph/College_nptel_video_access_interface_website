@@ -18,9 +18,11 @@
     <body>
         <?php 
             if(!empty($_POST)){
-                $conn=mysqli_connect("localhost","root","","nptel");
+                $conn = mysqli_connect("localhost","root","","nptel");
                 $value=$_POST['search'];
-                $var=mysqli_query($conn, "SELECT * FROM files WHERE (Topic LIKE '%$value%')");
+                $disc = $_POST['Discipline'];
+                $q = mysqli_query($conn, "SELECT DISTINCT Discipline FROM files");
+                $var = mysqli_query($conn, "SELECT * FROM files WHERE (Topic LIKE '%$value%') AND (Discipline = '$disc')");
                 if($var){
         ?>
         <div class="container-fluid">
@@ -29,21 +31,21 @@
                 <div class="col-md-10 col-sm-10 col-lg-10">
                     <nav class="navbar">
                         <div class="row">
-                            <div class="col-md-2 col-sm-2 col-lg-2">
-                                <a href="./subcat.php?sub=1">Subject1</a>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2">
-                                <a href="./subcat.php?sub=2">Subject2</a>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2">
-                                <a href="./subcat.php?sub=3">Subject3</a>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2">
-                                <a href="./subcat.php?sub=4">Subject4</a>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2">
-                                <a href="./subcat.php?sub=5">Subject5</a>
-                            </div>
+                            <form action="./search.php" method="post" id="2">
+                                <div class="col-md-8 col-lg-8 col-sm-8">                        
+                                    <input style="width:100%" type="text" name="search" placeholder="Search for Videos"/>
+                                    <select name="Discipline">
+                                        <option value="0" selected="1">Default</option>
+                                        <?php
+                                            while($vary = mysqli_fetch_array($q)){
+                                                $values = $vary['Discipline'];
+                                                echo "<option value='$values'>$values</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                    <input type="submit"/>
+                                </div>
+                            </form>
                         </div>
                     </nav>
                     <div class ="row">
@@ -97,7 +99,7 @@
             }
             else{
                 echo "<script>alert('Sorry, but you have to proceed from the main page.. click OK to redirect');</script>";
-                header('Location: ./index.html');
+                header('Location: ./index.php');
             }
         ?>
     </body>
