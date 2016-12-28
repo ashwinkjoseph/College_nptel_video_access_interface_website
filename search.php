@@ -63,7 +63,7 @@
                     <div  id="results">           
                         <center>                    
                             <form action ="download.php" method ="POST">
-                            <table><br>
+                            <table ><br>
                                 <tr><td colspan="2" id="content"></td></tr><br>
                                 <?php 
                                     while($ar=mysqli_fetch_array($vary)){
@@ -72,31 +72,31 @@
                                         if($ar['Format']=="video/mp4"){
                                             $f = "'".$title."'";
                                             $e = " ";
-                                            echo '<tr><td width="20%"><a href="#" onclick="expand('.$f.', 0, '.$e.');"><video align="left" style="width:100%; height:150%" src="'.$src.'"></video></a></td><td width="80%"><a href="#" onclick="expand('.$f.', 0);">'.$title.'</a></td></tr>';
+                                            echo '<tr><td width="10%"><a href="#" onclick="expand('.$f.', 0, '.$e.');"><video align="left" style="width:100%; height:150%" src="'.$src.'"></video></a></td><td width="80%"><a href="#" onclick="expand('.$f.', 0);">'.$title.'</a></td></tr>';
                                         }
                                         else{
                                             if($ar['Format']=="application/pdf"){
                                                 $f = "'".$title."'";
                                                 $e = " ";
-                                                echo '<tr ><td style="height:10px" width="20%"><a href="#" onclick="expand('.$f.', 1, '.$e.');"><img style="heigth:10px;" src="./images/logo-adobe-pdf.jpg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 1);">'.$title.'</a></td></tr>';
+                                                echo '<tr ><td width="10%"><a href="#" onclick="expand('.$f.', 1, '.$e.');"><img style="width:100%;" src="./images/logo-adobe-pdf.jpg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 1);">'.$title.'</a></td></tr>';
                                             }
                                             else{
                                                 if($ar['Format']=="html"){
                                                     $f = "'".$title."'";
                                                     $e = " ";
-                                                    echo '<tr><td style="height:10px" width="20%"><a href="#" onclick="expand('.$f.', 2, '.$e.');"><img src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 2, '.$e.');">'.$title.'</a></td></tr>';
+                                                    echo '<tr><td width="10%"><a href="#" onclick="expand('.$f.', 2, '.$e.');"><img style="width:100%;" src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 2, '.$e.');">'.$title.'</a></td></tr>';
                                                 }
                                                 else{
                                                     if($ar['Format']=="application/vnd.ms-powerpoint"){
                                                         $f = "'".$title."'";
                                                         $e = " ";
-                                                        echo '<tr><td style="height:10px" width="20%"><a href="#" onclick="expand('.$f.', 3, '.$e.');"><img src="./images/Microsoft_PowerPoint_2013_logo.svg.png"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 3, '.$e.');">'.$title.'</a></td></tr>';
+                                                        echo '<tr><td style="text-align:left" width="10%"><a href="#" onclick="expand('.$f.', 3, '.$e.');"><img style="width:100%;" align="left" style="height:50px; " src="./images/Microsoft_PowerPoint_2013_logo.svg.png"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 3, '.$e.');">'.$title.'</a></td></tr>';
                                                     }
                                                     else{
                                                         if($ar['Format']=="website"){
                                                             $f = "'".$title."'";
                                                             $link = "'".$ar['link']."'";
-                                                            echo '<tr><td style="height:10px" width="20%"><a href="#" onclick="expand('.$f.', 4, '.$link.');"><img src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 4, '.$link.');">'.$title.'</a></td></tr>';
+                                                            echo '<tr><td style="height:10px" width="10%"><a href="#" onclick="expand('.$f.', 4, '.$link.');"><img style="width:100%;" src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 4, '.$link.');">'.$title.'</a></td></tr>';
                                                         }
                                                     }
                                                 }
