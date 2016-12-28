@@ -8,6 +8,7 @@ function  choose_upload(){
         if(format=="website"){
             cont="<input type='text' name='title' id='title' placeholder='Enter the topic'/>";
             cont=cont+"<br>"+"<input type='text' name='link' id='link' placeholder='Enter the link'/>";
+            document.getElementById('upload').innerHTML = cont;
         }
         else{
             cont="<input type='file' name='files[]' id='files[]' multiple/>";

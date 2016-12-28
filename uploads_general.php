@@ -54,7 +54,7 @@
         if($format=="website"){
             $title=$_POST['title'];
             $link=$_POST['link'];
-            $query = "INSERT INTO website VALUES(id, '$subject', '$title', '$link')";
+            $query = "INSERT INTO files VALUES(id, '$subject', '$title', '$format', '$link')";
             if(mysqli_query($conn, $query)){
                 echo "<script>alert('Success');</sctipt>";
             }
@@ -74,7 +74,7 @@
                 }
                 $name = $_FILES['files']['name'][$i];
                 move_uploaded_file($_FILES['files']['tmp_name'][$i], $uploaddir.$name);
-                $query = "INSERT INTO files VALUES(id, '$subject', '$name', '$format')";
+                $query = "INSERT INTO files VALUES(id, '$subject', '$name', '$format', ' ')";
                 if(mysqli_query($conn, $query)){
                     echo "<script>alert('Success')</script>";
                 }

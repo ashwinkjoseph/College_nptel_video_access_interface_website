@@ -1,0 +1,337 @@
+/* General Demo Style */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@font-face {
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons/codropsicons.eot');
+	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0;}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #eaeaea;
+	background: #2c3e50;
+}
+
+a {
+	color: #b4c7da;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	color: #fff;
+}
+
+
+
+
+
+/* Header Style */
+.main,
+
+ #container{
+                margin-left:auto;
+                margin-right: auto;
+                margin-top:0px; 
+
+                width:100%;
+                height:auto;
+                background-color:#333333;
+ }
+/*my codesss
+*/
+ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
+
+            li {
+                float: left;
+                border-left:1px solid #bbb;
+                border-top:1px solid #bbb;
+                border-bottom:1px solid #bbb;
+            }
+
+            li:last-child {
+                border-left: 1px solid #bbb;
+                border-right: 1px solid #bbb;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            li a:hover:not(.active) {
+                background-color: #111;
+            }
+
+            .active {
+                background-color: #4CAF50;
+            }
+
+
+
+
+            #navbar{
+                height: 15px;
+                background-color: #666666;
+                font-size: 80%;
+            }           
+
+
+ #demo
+ {
+     background-color:#333333;
+ }
+ 
+ #bar{
+                width:100%; 
+                height:auto;
+                min-height:50px;
+
+                cursor: move;
+                background:grey;
+                border-top:1px solid #bbb;
+                border-bottom:1px solid #bbb;
+                border-right:1px solid #bbb;
+            }
+        #sear{
+                min-height:250px;
+                margin-top: 10%;
+            }           
+  
+            #results{
+                 margin-left:auto;
+                margin-right: auto;
+                position:relative;
+                width:80%;
+                background-color: red;
+            }    
+            #resclm{
+                margin-left:auto;
+                margin-right: auto;
+                
+                background-color: blue;
+                           } 
+.pdfobjects{
+ height: 500px;
+ border: 1px solid #666;
+  margin-left:auto;
+                margin-right: auto;
+                width:80%; 
+}
+#content{
+            margin-left:auto;
+                margin-right: auto;
+                width:180%;
+}
+            
+ /*end */
+ 
+ 
+ 
+ 
+ .title{
+
+                font-size: 600%;
+                font-size-adjust: inherit;
+                font-family: inherit;
+                flex-align: auto;
+                font-weight: bold;
+                margin-top: 00px;
+                margin: auto;
+            }   
+/* Main Content */
+.main {
+	max-width: 69em;
+}
+
+.column {
+	float: left;
+	width: 50%;
+	padding: 0 2em;
+	min-height:120px;
+	position: relative;
+        background:none;
+}
+
+.column:nth-child(2) {
+	box-shadow: none;
+}
+
+.column p {
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.column a {
+	border: 3px solid #b4c7da;
+	padding: 0 15px;
+	display: inline-block;
+	margin: 20px 0;
+}
+
+.column a:hover {
+	border-color: #fff;
+}
+.column {
+	float: left;
+	width: 50%;
+	padding: 0 2em;
+	min-height: 150px;
+	position: relative;
+}
+
+
+
+.column p {
+	font-size: 600%;
+                font-size-adjust: inherit;
+                font-family: inherit;
+                flex-align: auto;
+                font-weight: bold;
+                margin-top: 00px;
+                margin: auto;
+                
+}
+
+.column a {
+	border: 3px solid #b4c7da;
+	padding: 0 15px;
+	display: inline-block;
+	margin: 20px 0;
+}
+
+.column a:hover {
+	border-color: #fff;
+}
+
+
+
+
+
+
+
+
+/*search*/
+
+.serch{
+    margin-top: 10px;
+	
+	width: 0%;
+        min-width: 500px;
+	height: 60px;
+        font-family: impact;
+        font-size: 100%;
+        border-radius: 5px;
+}
+.subm{
+    margin-top: 10px;
+	border: orangered;
+	width: 120px;
+        background-color:orangered;
+	height: 40px;
+        border-radius: 10px;
+        font-family: impact;
+}
+
+
+.serch1{
+    margin-top: 10px;
+	
+	width: 0%;
+        min-width: 200px;
+	height: 30px;
+        font-family: arial;
+        font-size: 80%;
+        border-radius: 2px;
+}
+.subm1{
+    margin-top: 10px;
+	border: orangered;
+	width: 50px;
+        background-color:#4CAF50;
+	height: 30px;
+        border-radius: 5px;
+}
+/*end*/
+
+
+
+
+
+
+@media screen and (max-width: 46.0625em) {
+	.column {
+		width: 100%;
+		min-width: auto;
+		min-height: auto;
+		padding: 1em; 
+	}
+
+	.column p {
+		font-size: 200%;
+                font-size-adjust: inherit;
+                font-family: inherit;
+                flex-align: auto;
+                font-weight: bold;
+                margin-top: 00px;
+                margin: auto;
+                
+	}
+        
+
+	.column:nth-child(2) {
+		box-shadow: 0 -1px 0 rgba(0,0,0,0.1);
+	}
+        
+        .serch{
+    margin-top: 10px;
+	
+	width: 0%;
+        min-width: 150px;
+	height: 40px;
+        border-radius: 5px;
+}
+.subm{
+    margin-top: 0px;
+	border: orangered;
+	width: 60px;
+        background-color:orangered;
+	height: 30px;
+        border-radius: 10px;
+}
+        
+}
+
+@media screen and (max-width: 25em) {
+
+	.codrops-icon span {
+		display: none;
+	}
+
+}
