@@ -72,7 +72,7 @@
                                         if($ar['Format']=="video/mp4"){
                                             $f = "'".$title."'";
                                             $e = " ";
-                                            echo '<tr><td width="10%"><a href="#" onclick="expand('.$f.', 0, '.$e.');"><video align="left" style="width:100%; height:150%" src="'.$src.'"></video></a></td><td width="80%"><a href="#" onclick="expand('.$f.', 0);">'.$title.'</a></td></tr>';
+                                            echo '<tr><td width="10%"><a href="#" onclick="expand('.$f.', 0, '.$e.');"><video align="left" preload="metadata" style="width:100%; height:150%" src="'.$src.'"></video></a></td><td width="80%"><a href="#" onclick="expand('.$f.', 0);">'.$title.'</a></td></tr>';
                                         }
                                         else{
                                             if($ar['Format']=="application/pdf"){
