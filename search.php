@@ -10,13 +10,6 @@
         <?php
             $conn = mysqli_connect("localhost", "root", "", "nptel");
         ?>
-        <script type="text/javascript">
-            function checkSubmit(n, e){
-                if(e && e.keyCode==13){
-                    document.forms[n-1].submit();
-                }
-            }
-        </script>	
     </head>
     <body>
         <?php 
@@ -63,9 +56,9 @@
                     <div  id="results">           
                         <center>                    
                             <form action ="download.php" method ="POST">
-                            <table ><br>
+                            <table style="width:100%"><br>
                                 <tr><td colspan="2" id="content"></td></tr><br>
-                                <?php 
+                                <?php
                                     while($ar=mysqli_fetch_array($vary)){
                                         $title=$ar['Topic'];    
                                         $src="./uploads/FILES/".$title;
@@ -78,7 +71,7 @@
                                             if($ar['Format']=="application/pdf"){
                                                 $f = "'".$title."'";
                                                 $e = " ";
-                                                echo '<tr ><td width="10%"><a href="#" onclick="expand('.$f.', 1, '.$e.');"><img style="width:100%;" src="./images/logo-adobe-pdf.jpg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 1);">'.$title.'</a></td></tr>';
+                                                echo '<tr ><td width="10%"><a href="#" onclick="expand('.$f.', 1, '.$e.');"><img style="width:100%;" src="./images/logo-adobe-pdf.png"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 1);">'.$title.'</a></td></tr>';
                                             }
                                             else{
                                                 if($ar['Format']=="html"){
@@ -87,7 +80,7 @@
                                                     echo '<tr><td width="10%"><a href="#" onclick="expand('.$f.', 2, '.$e.');"><img style="width:100%;" src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 2, '.$e.');">'.$title.'</a></td></tr>';
                                                 }
                                                 else{
-                                                    if($ar['Format']=="application/vnd.ms-powerpoint"){
+                                                    if(($ar['Format']=="application/vnd.ms-powerpoint")||($ar['Format']=="application/vnd.openxmlformats-officedocument.presentationml.presentation")){
                                                         $f = "'".$title."'";
                                                         $e = " ";
                                                         echo '<tr><td style="text-align:left" width="10%"><a href="#" onclick="expand('.$f.', 3, '.$e.');"><img style="width:100%;" align="left" style="height:50px; " src="./images/Microsoft_PowerPoint_2013_logo.svg.png"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 3, '.$e.');">'.$title.'</a></td></tr>';
@@ -96,7 +89,7 @@
                                                         if($ar['Format']=="website"){
                                                             $f = "'".$title."'";
                                                             $link = "'".$ar['link']."'";
-                                                            echo '<tr><td style="height:10px" width="10%"><a href="#" onclick="expand('.$f.', 4, '.$link.');"><img style="width:100%;" src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td style="height:10px" width="80%"><a href="#" onclick="expand('.$f.', 4, '.$link.');">'.$title.'</a></td></tr>';
+                                                            echo '<tr><td style="width:10%"><a href="#" onclick="expand('.$f.', 4, '.$link.');"><img style="width:100%;" src="./images/HTML5_logo_and_wordmark.svg"/></a></td><td width=80%"><a href="#" onclick="expand('.$f.', 4, '.$link.');">'.$title.'</a></td></tr>';
                                                         }
                                                     }
                                                 }

@@ -125,7 +125,7 @@ ul {
                 margin-right: auto;
                 position:relative;
                 width:80%;
-                background-color: red;
+                background-color: rgba(1,2,1,0.1);
             }    
             #resclm{
                 margin-left:auto;
@@ -273,7 +273,7 @@ ul {
 .subm1{
     margin-top: 10px;
 	border: orangered;
-	width: 50px;
+	width: 80px;
         background-color:#4CAF50;
 	height: 30px;
         border-radius: 5px;

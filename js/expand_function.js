@@ -15,7 +15,7 @@ function expand(topic, type, link){
         }
         else{
             if(type==2){
-                var cont = "<iframe src='"+src+"'></iframe>";
+                var cont = "<iframe width='100%' height='600' src='"+src+"'></iframe>";
                 container.innerHTML=title+cont;
             }
             else{
@@ -30,7 +30,7 @@ function expand(topic, type, link){
                 }
                 else{
                     if(link!=" "){
-                        var cont = "<iframe src='"+link+"'></iframe>";
+                        var cont = "<iframe src='"+link+"' width='100%' height='600'></iframe>";
                         cont = cont + "<br><a href='"+link+"' target='_blank'>Open in New TAB</a>";
                         container.innerHTML = topic + cont;
                     }
