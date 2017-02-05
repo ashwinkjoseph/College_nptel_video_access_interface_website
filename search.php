@@ -15,8 +15,8 @@
         <?php 
             if(!empty($_POST)){
                 $conn = mysqli_connect("localhost","root","","nptel");
-                $value=$_POST['search'];
-                $disc = $_POST['Discipline'];
+                $value= mysqli_real_escape_string($conn, $_POST['search']);
+                $disc = mysqli_real_escape_string($conn, $_POST['Discipline']);
                 $q = mysqli_query($conn, "SELECT DISTINCT Discipline FROM files");
                 $vary = mysqli_query($conn, "SELECT * FROM files WHERE (Topic LIKE '%$value%') AND (Discipline = '$disc')");
                 if($vary){
