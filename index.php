@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<title>NPTEL</title>
 	<link rel="stylesheet" type="text/css" href="css/default.css" />
+        <link rel="stylesheet" href="cobaltaliensuperital\font.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>             
+
         <?php
             $conn = mysqli_connect("localhost", "root", "", "nptel");
         ?>	
@@ -18,8 +20,23 @@
             <div class="main clearfix">
 		<!-- Optional columns for small components -->
 		<div class="column">
-                    <center> <p class="column-p">NPTEL</p></center><br>
-                    <center>National Programme on Technology  Enhanced learning</center>			
+                    <center> 
+                        
+                        
+                         <style type="text/css">
+	
+		h1 {
+			font-family: 'cobaltaliensuperital';
+                        transform-origin: 2s centre;
+		}
+		</style>
+                        
+                        
+                <h1>NPTEL</h1>
+                    
+                    
+                    </center><br>
+                    <center><font class="newfont">National Programme on Technology  Enhanced learning</font></center>			
 		</div>
 		<div class="column">
                     <br><br>MAR ATHANASIUS COLLEGE OF ENGINEERING<br><br><br>                        
@@ -56,7 +73,11 @@
                                 ?>
                             </select>
                             <input class="subm" type="submit"/>
-                        </form>  
+                        </form> 
+                        
+           
+                        
+                        
                     </center>
                 </div>
                 <br><br>   
