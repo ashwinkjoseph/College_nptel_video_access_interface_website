@@ -43,15 +43,11 @@ a:active {
 
 
 /* Header Style */
-.main,
-
- #container{
+.main,#container{
                 margin-left:auto;
                 margin-right: auto;
                 margin-top:0px; 
-
                 width:100%;
-                height:auto;
                 background-color:#333333;
  }
 /*my codesss
