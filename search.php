@@ -58,13 +58,20 @@
 }
 .demo-card-wide > .mdl-card__title {
   height: auto;
-  background-color: #D3D3D3;
+  background-color: #fff;
 }
 .demo-card-wide > .mdl-card__menu {
-  color: #fff;
+    color: #fff;
 }
 h2{
     color:white;
+}
+.tit-small{
+    font-size: 2vw; 
+    margin-left: -13vw;
+}
+.tit-big{
+    font-size: 1.8vw; 
 }
         </style>
         <script>
@@ -78,7 +85,7 @@ h2{
                 if(yPos>5){
                     navi.style.height = "0px";
                 }else{
-                        navi.style.height = "125px";
+                        navi.style.height = "75px";
                 }
             }
             window.addEventListener("scroll", yscrolltop);
@@ -90,7 +97,9 @@ h2{
             if(!empty($_POST)){
                 $conn = mysqli_connect("localhost","root","","nptel");
                 $value= mysqli_real_escape_string($conn, $_POST['search']);
+                $value = htmlspecialchars($value, ENT_QUOTES);
                 $disc = mysqli_real_escape_string($conn, $_POST['Discipline']);
+                $disc = htmlspecialchars($disc, ENT_QUOTES);
                 $q = mysqli_query($conn, "SELECT DISTINCT Discipline FROM files");
                 $vary = mysqli_query($conn, "SELECT * FROM files WHERE (Topic LIKE '%$value%') AND (Discipline = '$disc')");
                 if(!$vary){
@@ -98,7 +107,6 @@ h2{
                 }
                 else{
         ?>		              
-        <!-- Uses a header that contracts as the page scrolls down. -->
 <div class="mdl-grid mdl-grid--no-spacing">
 <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
 <div class="mdl-layout mdl-js-layout">
@@ -108,20 +116,24 @@ h2{
     <nav style="opacity:0" class="navbar navbar-default"></nav>
     <nav style="opacity:0" class="navbar navbar-default"></nav>
   <nav class="navbar navbar-default navbar-fixed-top mdl-layout__header mdl-shadow--2dp">
-    <div id="navi" class="mdl-layout__header-row">
-      <span class="mdl-layout-title">MAR ATHANASIUS COLLEGE OF ENGINEERING, NPTEL STUDY MATERIAL ONLINE COLLECTION</span>
+    <div id="navi" style="height:75px"class="mdl-layout__header-row">
+        <span class="mdl-layout-title img-responsive">MAR ATHANASIUS COLLEGE OF ENGINEERING, NPTEL STUDY MATERIAL ONLINE COLLECTION</span>
+        <!--<div id="tit">MAR ATHANASIUS COLLEGE OF ENGINEERING, NPTEL STUDY MATERIAL ONLINE COLLECTION</div>-->
     </div>
-      <div class="mdl-layout__header-row">
-          <div class="mdl-layout-spacer"></div>
-          <div id="bu">
-          <!--<div id="bu" style="padding-right: 50px">-->
-          <form id="sea" style="display:none" action="./search.php" method="post" id="2"> 
+      <div style="margin-left:-5vw;" class="mdl-layout__header-row img-responsive">
+          <!--<div class="mdl-layout-spacer"></div>-->
+          <div style="padding-right: 50px" onclick="se()" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+          </div>
+          <form style="display: none" id="sea" action="./search.php" class="img-responsive" method="post" id="2">            
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" id="sample1" type="text" name="search">
-                        <label class="mdl-textfield__label" for="sample1">Search Here</label>
+                        <input class="mdl-textfield__input" id="sample1" type="text" name="search" placeholder="type here">
                     </div>
-                    <!--<input class="serch1" style="opacity:5;height: 30px; width: 100px; padding:0px 10px"  type="text" name="search" placeholder="Search here"/>-->
-                    <select class="subm1" style="height: 20px; width: 100px;" name="Discipline">
+                    <select class="mdl-button mdl-button--raised mdl-button--accent mdl-shadow--2dp" name="Discipline">
                         <option value="0" selected="1">Default</option>
                         <?php
                             $q = mysqli_query($conn, "SELECT DISTINCT Discipline FROM files");
@@ -131,16 +143,8 @@ h2{
                             }
                         ?>
                     </select>
-                    <input class="subm1" style="height: 20px; width: 100px;" type="submit"/>    
+                    <input class="mdl-button mdl-shadow--2dp mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"/>    
           </form>
-        </div>
-          <div style="padding-right: 50px" onclick="se()" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="waterfall-exp">
-          <i class="material-icons">search</i>
-        </label>
-          </div>
       </div>
   </nav> 
 </div>
@@ -160,22 +164,13 @@ h2{
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
                                     <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                    <div style="background:white" class="demo-card-wide mdl-shadow--2dp">
                                     <div class="mdl-card__title">
-                                <?php
-                                            echo '<a href="#" onclick="expand('.$f.', 0, '.$e.');"><video align="left" preload="metadata" style="width:200px; height: 100px" src="'.$src.'"></video></a><h2 class="mdl-card__title-text"><a href="#" onclick="expand('.$f.', 0);">'.$title.'</a></h2>';
-                                            ?>
+                                        <a href="#" onclick='expand("<?php echo $title; ?>", 0, " ");'>
+                                            <video align="left" preload="metadata" class="mdl-shadow--2dp" style="width:200px; height: 100px" src="<?php echo $src; ?>"></video>
+                                            <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"><?php echo $title; ?></h2>
+                                        </a>
                                     </div>
-                                        <div class="mdl-card__actions mdl-card--border">
-                                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                                Open
-                                            </a>
-                                        </div>
-                                        <div class="mdl-card__menu">
-                                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                <i class="material-icons">share</i>
-                                            </button>
-                                        </div>
                                     </div>
                                     </div>
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
@@ -190,22 +185,15 @@ h2{
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
                                     <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                    <div class="demo-card-wide mdl-shadow--2dp">
                                     <div class="mdl-card__title">
-                                <?php
-                                                echo '<a href="#" onclick="expand('.$f.', 1, '.$e.');"><img style="width:auto; height:100px;" src="./images/logo-adobe-pdf.png"/></a><h2 class="mdl-card__title-text"><a href="#" onclick="expand('.$f.', 1);">'.$title.'</a></h2>';
-                                            ?>
+                                        <a href="#" onclick='expand("<?php echo $title; ?>", 0, " ");'>
+                                            <img style="width:auto; height:100px;" class="mdl-shadow--2dp" src="./images/logo-adobe-pdf.png"/>
+                                            <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                                <?php echo $title; ?>
+                                            </h2>
+                                        </a>
                                     </div>
-                                        <div class="mdl-card__actions mdl-card--border">
-                                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                                Open
-                                            </a>
-                                        </div>
-                                        <div class="mdl-card__menu">
-                                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                <i class="material-icons">share</i>
-                                            </button>
-                                        </div>
                                     </div>
                                     </div>
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
@@ -220,22 +208,15 @@ h2{
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
                                     <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                    <div class="demo-card-wide mdl-shadow--2dp">
                                     <div class="mdl-card__title">
-                                <?php
-                                                    echo '<a href="#" onclick="expand('.$f.', 2, '.$e.');"><img style="width:auto; height:100px;" src="./images/HTML5_logo_and_wordmark.svg"/></a><h2 class="mdl-card__title-text"><a href="#" onclick="expand('.$f.', 2, '.$e.');">'.$title.'</a></h2>';
-                                                ?>
+                                        <a href="#" onclick='expand("<?php echo $title; ?>", 0, " ");'>
+                                            <img class="mdl-shadow--2dp" style="width:auto; height:100px;" src="./images/HTML5_logo_and_wordmark.svg"/>
+                                            <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                                <?php echo $title; ?>
+                                            </h2>
+                                        </a>
                                     </div>
-                                        <div class="mdl-card__actions mdl-card--border">
-                                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                                Open
-                                            </a>
-                                        </div>
-                                        <div class="mdl-card__menu">
-                                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                <i class="material-icons">share</i>
-                                            </button>
-                                        </div>
                                     </div>
                                     </div>
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
@@ -250,22 +231,15 @@ h2{
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
                                     <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                    <div class="demo-card-wide mdl-shadow--2dp">
                                     <div class="mdl-card__title">
-                                <?php
-                                                        echo '<a href="#" onclick="expand('.$f.', 3, '.$e.');"><img style="height:100px; width:auto;" align="left" style="height:50px; " src="./images/Microsoft_PowerPoint_2013_logo.svg.png"/></a><h2 class="mdl-card__title-text"><a href="#" onclick="expand('.$f.', 3, '.$e.');">'.$title.'</a></h2>';
-                                                        ?>
+                                        <a href="#" onclick='expand("<?php echo $title; ?>", 0, " ");'>
+                                            <img class="mdl-shadow--2dp" style="height:100px; width:auto;" align="left" style="height:50px; " src="./images/Microsoft_PowerPoint_2013_logo.svg.png"/>
+                                            <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                                <?php echo $title; ?>
+                                            </h2>
+                                        </a>
                                     </div>
-                                        <div class="mdl-card__actions mdl-card--border">
-                                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                                Open
-                                            </a>
-                                        </div>
-                                        <div class="mdl-card__menu">
-                                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                <i class="material-icons">share</i>
-                                            </button>
-                                        </div>
                                     </div>
                                     </div>
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
@@ -280,22 +254,15 @@ h2{
                                     <div class="mdl-grid">
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
                                     <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                    <div class="demo-card-wide mdl-shadow--2dp">
                                     <div class="mdl-card__title">
-                                <?php
-                                                            echo '<a href="#" onclick="expand('.$f.', 4, '.$link.');"><img style="width:auto; height:100px;" src="./images/HTML5_logo_and_wordmark.svg"/></a><a href="#" onclick="expand('.$f.', 4, '.$link.');">'.$title.'</a></h2>';
-                                                        ?>
+                                        <a href="#" onclick='expand("<?php echo $title; ?>", 0, " ");'>
+                                            <img class="mdl-shadow--2dp" style="width:auto; height:100px;" src="./images/HTML5_logo_and_wordmark.svg"/>
+                                            <h2 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                                <?php echo $title; ?>
+                                            </h2>
+                                        </a>
                                     </div>
-                                        <div class="mdl-card__actions mdl-card--border">
-                                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                                Open
-                                            </a>
-                                        </div>
-                                        <div class="mdl-card__menu">
-                                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                <i class="material-icons">share</i>
-                                            </button>
-                                        </div>
                                     </div>
                                     </div>
                                         <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>
@@ -328,7 +295,7 @@ h2{
   </div>
  </div>
   <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet mdl-cell--0-col-phone"></div>   
-</div><?php
+<?php
                               }
                 }
                 ?>
@@ -340,9 +307,7 @@ h2{
                 header('Location: ./index.php');
             }
         ?>
-    <br>
-   <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <br></div></div></div>
     <div id="footer">
       <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
@@ -350,24 +315,36 @@ h2{
         </div>
       </footer>
     </div>
-        
-</div></div>
         <script>
-            screensize = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-            if(screensize<=400){
+            screenheight = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+//            screenwidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            if(screenheight<=400){
                 document.getElementById("footer").className="footermob";
             }
             else{
                 document.getElementById("footer").className="footerdesk";
             }
+//            if(screenwidth<550){
+//                document.getElementById("tit").className="tit-small";
+//            }
+//            else{
+//                document.getElementById("tit").className="tit-big";
+//            }
             window.onresize= function (){
-                screensize = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-                if(screensize<=400){
+                screenheight = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+//                screenwidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                if(screenheight<=480){
                     document.getElementById("footer").className="footermob";
                 }
                 else{
                     document.getElementById("footer").className="footerdesk";
                 }
+//                if(screenwidth<550){
+//                    document.getElementById("tit").className="tit-small";
+//                }
+//                else{
+//                    document.getElementById("tit").className="tit-big";
+//                }
             }
             var sea = document.getElementById('sea');
             var count = 0;

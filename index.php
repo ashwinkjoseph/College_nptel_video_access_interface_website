@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>             
-
+        
         <?php
             $conn = mysqli_connect("localhost", "root", "", "nptel");
         ?>	
@@ -53,6 +53,13 @@
     bottom:0;
     width:100%;
 }
+.tit-small{
+    font-size: 2vw; 
+    margin-left: -13vw;
+}
+.tit-big{
+    font-size: 1.8vw; 
+}
         </style>
         <script>
             var navi;
@@ -83,15 +90,23 @@
     <nav style="opacity:0" class="navbar navbar-default"></nav>
     <nav style="opacity:0" class="navbar navbar-default"></nav>
   <nav class="navbar navbar-default navbar-fixed-top mdl-layout__header mdl-shadow--2dp">
-    <div id="navi" class="mdl-layout__header-row">
-      <span class="mdl-layout-title">MAR ATHANASIUS COLLEGE OF ENGINEERING, NPTEL STUDY MATERIAL ONLINE COLLECTION</span>
+    <div id="navi" style="height:75px"class="mdl-layout__header-row">
+        <span class="mdl-layout-title img-responsive">MAR ATHANASIUS COLLEGE OF ENGINEERING, NPTEL STUDY MATERIAL ONLINE COLLECTION</span>
     </div>
-      <div class="mdl-layout__header-row">
-          <div class="mdl-layout-spacer"></div>
-          <div id="bu" style="padding-right: 50px">
-          <form style="display: none" id="sea" action="./search.php" method="post" id="2">            
-                    <input class="serch1" style="height: 20px; width: 100px;"  type="text" name="search" placeholder="Search here"/>
-                    <select class="subm1" style="height: 20px; width: 100px;" name="Discipline">
+      <div style="margin-left:-5vw;" class="mdl-layout__header-row img-responsive">
+          <!--<div class="mdl-layout-spacer"></div>-->
+          <div style="padding-right: 50px" onclick="se()" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+          </div>
+          <form style="display: none" id="sea" action="./search.php" class="img-responsive" method="post" id="2">            
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" id="sample1" type="text" name="search" placeholder="type here">
+                    </div>
+                    <select class="mdl-button mdl-button--raised mdl-button--accent mdl-shadow--2dp" name="Discipline">
                         <option value="0" selected="1">Default</option>
                         <?php
                             $q = mysqli_query($conn, "SELECT DISTINCT Discipline FROM files");
@@ -101,16 +116,8 @@
                             }
                         ?>
                     </select>
-                    <input class="subm1" style="height: 20px; width: 100px;" type="submit"/>    
+                    <input class="mdl-button mdl-shadow--2dp mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"/>    
           </form>
-        </div>
-          <div style="padding-right: 50px" onclick="se()" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="waterfall-exp">
-          <i class="material-icons">search</i>
-        </label>
-          </div>
       </div>
   </nav> 
 </div>
@@ -121,8 +128,10 @@
   <main class="mdl-layout__content">
     <div style="padding-top:20px" class="page-content">
                         <form class="group" action="./search.php" method="post" id="2">    
-                            <input class="serch"  type="text" name="search" placeholder="Search for Videos"/><br>
-                            <select class="subm" name="Discipline">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-shadow--2dp mdl-textfield__input" id="sample1" type="text" name="search" placeholder="type here">
+                            </div>
+                            <select class="mdl-button mdl-button--raised mdl-button--accent" name="Discipline">
                                 <option value="0" selected="1">Default</option>
                                 <?php
                                     $q = mysqli_query($conn, "SELECT DISTINCT Discipline FROM files");
@@ -132,7 +141,7 @@
                                     }
                                 ?>
                             </select>
-                            <input class="subm" type="submit"/>
+                            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"/>
                         </form> 
     </div>
     </main>
@@ -149,21 +158,35 @@
     </div></div></div>
         <!-- Latest compiled and minified JavaScript -->
         <script>
-            screensize = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-            if(screensize<=400){
+            screenheight = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+//            screenwidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            if(screenheight<=400){
                 document.getElementById("footer").className="footermob";
             }
             else{
                 document.getElementById("footer").className="footerdesk";
             }
+//            if(screenwidth<550){
+//                document.getElementById("tit").className="tit-small";
+//            }
+//            else{
+//                document.getElementById("tit").className="tit-big";
+//            }
             window.onresize= function (){
-                screensize = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-                if(screensize<=400){
+                screenheight = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+                screenwidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                if(screenheight<=480){
                     document.getElementById("footer").className="footermob";
                 }
                 else{
                     document.getElementById("footer").className="footerdesk";
                 }
+//                if(screenwidth<550){
+//                    document.getElementById("tit").className="tit-small";
+//                }
+//                else{
+//                    document.getElementById("tit").className="tit-big";
+//                }
             }
             var sea = document.getElementById('sea');
             var count = 0;
@@ -177,6 +200,7 @@
                 count++;
             }
         </script>
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
